@@ -1,14 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylessheet" href="./style.css" >
-    <title>Quiz</title>
-</head>
-<body>
-    <h1>Heloo</h1>
-    <script src="./app.js"></script>>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./style.css" />
+        <script
+            src="https://code.jquery.com/jquery-3.6.2.min.js"
+            integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA="
+            crossorigin="anonymous"
+        ></script>
+
+        <title>Quiz</title>
+    </head>
+    <body>
+        <div class="main-Container">
+            <div class="Qs-container">
+                <div class="timer-Container">
+                    <span>Time:</span>
+                      <div class="timer-wrapper"> <span>00</span>:<span>00</span></div>
+                </div>
+
+                <div class="Q-container">
+                    <p>Why We Use break  Element ?</p>
+                </div>
+
+                <div class="score-container">
+                    <span>1</span> : <span>Points</span>
+                </div>
+            </div>
+            <div class="answers-container">
+                <div class="option-btn answer-A">A - To Make Text Bold.</div>
+                <div class="option-btn answer-B">B - To Make Text Italic.</div>
+                <div class="option-btn answer-C">C - To Add Breakline.</div>
+                <div class="option-btn answer-D">D - To Create Horizontal Line.</div>
+            </div>
+            <div class="btn-wrapper">
+                <a href="#" style="--clr:#5CB9FF" class="start-quiz-btn giveup-btn"><span>GIVE UP </span></a>
+            </div>
+        </div>
+
+        <div class="animated-text">
+            <section class="mast">
+                <div class="mast__header">
+                    <h1 class="mast__title js-spanize">-This Quiz is to test your IQ level,                       You will get 10 quistions and 4 options for each quistion.          You can click on GiveUp button to see the right answer and move to the next quistoion.                                                 Try to be quick because you get extra
+                           points if you finish early.!              If you are ready!!                          click on Start.                                          Good Luck.........
+                        
+                    </h1>
+                    <!--..<div class="mast__text js-spanize">.-->
+                </div>
+            </section>
+            <div class="btn-wrapper">
+                <a href="#" style="--clr:#5CB9FF" class="start-quiz-btn"><span>Start </span></a>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="./app.js"></script>
+    </body>
 </html>

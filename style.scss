@@ -1,0 +1,359 @@
+// Config: fonts
+$font-mono: "Cutive Mono", monospace;
+// Config: Ease
+$ease-cb: cubic-bezier(0.19, 1, 0.22, 1);
+
+//--------------------------
+//  nth-trans-delay()
+//  @description: Transition Delay on nth-childs
+//  @param: $delay_items: [7]    - number of nth-of-type items to create
+//  @param: $delay_time:[1.5s]   - transition-dealy value
+//--------------------------
+@mixin nth-trans-delay($delay_items: 7, $delay_time: 0.2s) {
+    @for $i from 1 through $delay_items {
+        &:nth-child(#{$i}) {
+            transition-delay: $delay_time * $i;
+        }
+    }
+}
+
+//--------------------------
+//  nth-ani-delay()
+//  @description: Animation Delay on nth-childs
+//  @param: $delay_items: [7] - number of nth-of-type items to create
+//  @param: $delay_time:[1.5s] - transition-dealy value
+//--------------------------
+@mixin nth-ani-delay($delay_items: 7, $delay_time: 0.2s) {
+    @for $i from 1 through $delay_items {
+        &:nth-child(#{$i}) {
+            animation-delay: $delay_time * $i;
+        }
+    }
+}
+//--------------------------
+//  bg-overlay()
+//  @description:pseduo overlay element
+//  @param: $bg_hex: [$color-dark] - hex value for rgba conversion
+//  @param: $bg_opacity:[0.6] - alpha transparency level
+//  @param: $top_layer: element or class name for higher z-index layer
+//--------------------------
+@mixin bg-overlay($bg_hex: #111, $bg_opacity: 0.6, $top_layer: ".mast__header") {
+    &:after {
+        z-index: 0;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(#232526, #414345);
+    }
+
+    // Layer atop overlay
+    & > #{$top_layer} {
+        z-index: 2;
+        position: relative;
+    }
+}
+//Setups
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+// styling the welcome page , with animated text ----------------------------------------------->>
+body {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    font-family: $font-mono;
+    line-height: 1.5;
+    font-weight: 400;
+    font-style: normal;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+
+    background: linear-gradient(#232526, #414345);
+    
+}
+
+.sep {
+    border: 0;
+    width: 3em;
+    height: 1px;
+    margin: 1em 0;
+    background-color: transparent;
+}
+
+.animated-text {
+  display: none !important;
+  position: relative;
+  background: transparent;
+  margin: auto;
+  width: 90%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.mast__title {
+  font-size: 1em !important;
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
+  margin-bottom: 50px;
+  margin-top: 100px;
+  color: #5CB9FF;
+  line-height: 3;
+}
+
+// styling the neon button --------------------->
+
+.btn-wrapper{
+
+  width: 100%;
+  height: 30%;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  transition: 1s ease-in-out;
+}
+.start-quiz-btn {
+  height: 65px;
+  width: 300px;
+  font-weight: bolder;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  background-color: #5CB9FF;
+  color: #5CB9FF;
+  position: relative;
+  cursor: pointer;
+  margin: 3px 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  
+  
+  
+  
+}
+.start-quiz-btn
+:hover {
+  transform: scale(1.2);
+  background-color: var(--clr);
+  box-shadow: 1px 2px 33px var(--clr);
+  letter-spacing: .39em;
+  
+ 
+}
+
+.start-quiz-btn
+:before {
+
+  content: '';
+  position:absolute;
+  inset: 2px;
+  background: linear-gradient(#232526, #414345);
+  z-index: -1;
+
+}
+.start-quiz-btn span {
+  
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 30px;
+  font-size: 30px;
+  width: 300px;
+
+}
+
+
+
+.mast {
+    position: relative;
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80%;
+    color: #fff;
+    
+    @include bg-overlay(rgb(31, 31, 31), 1);
+
+    &__bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        background-size: cover;
+        background-position: 50%;
+    }
+
+    &__header {
+        padding: 5%;
+    }
+    &__title {
+        font-family: $font-mono;
+        font-weight: 400;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #5CB9FF;
+    }
+    // Letter animation
+    &__title span {
+        animation: letter-glow 0.8s 0s ease both;
+        @include nth-ani-delay(600, 0.06s);
+    }
+    //Letter animation ------------------------------------------- < didn't use maybe deleting>>
+    &__text {
+        font-family: $font-mono;
+        font-size: 1em;
+        margin: 0 0 0.5em;
+        line-height: 1.5;
+        white-space: pre;
+        color: #5CB9FF;
+    }
+
+    &__text span {
+        margin-top: 20px;
+        animation: letter-glow 0.5s 0s ease both;
+        @include nth-ani-delay(600, 0.05s);
+    }
+}
+
+// Letter Glow
+@keyframes letter-glow {
+    0% {
+        opacity: 0;
+        text-shadow: 0px 0px 1px rgba(217, 230, 41, 0.1);
+    }
+    66% {
+        opacity: 1;
+        text-shadow: 0px 0px 20px rgba(0, 255, 76, 0.9);
+    }
+    77% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.7;
+        text-shadow: 0px 0px 20px rgba(248, 203, 203, 0);
+    }
+}
+
+//------------------------------------------------->
+
+
+// styling the main page structure
+
+
+.main-Container {
+    display: 1 !important;
+
+    background-color: transparent;
+    height: 80%;
+    width: 90%;
+    border: solid 1px black;
+    margin: auto;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.Qs-container {
+    
+    height: 55%;
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    justify-content: space-between;
+}
+
+.timer-Container {
+    border: black 1px solid;
+    height: 100px;
+    width: 20%;
+    color: rgb(64, 201, 255); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+.Q-container {
+    
+    height: 90%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 30px;
+}
+
+.Q-container p {
+    font-size: 42px;
+    background: -webkit-linear-gradient(rgb(47, 135, 185), rgb(64, 201, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+}
+
+.score-container {
+  border: black 1px solid;
+  height: 100px;
+  width: 20%;
+    color: rgb(64, 201, 255); 
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    font-size: 20px;
+    
+}
+
+.answers-container {
+   
+    height: 45%;
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.option-btn{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 20px;
+  color: rgb(64, 141, 172); 
+ 
+}
+.answers-container .option-btn {
+    background-color: rgb(46, 46, 46);
+    height: 18%;
+    width: 48%;
+    cursor: pointer;
+}
