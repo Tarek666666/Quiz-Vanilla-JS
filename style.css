@@ -8,7 +8,6 @@ body {
   margin: 0;
   width: 100%;
   height: 100vh;
-  display: flex;
   font-family: "Cutive Mono", monospace;
   line-height: 1.5;
   font-weight: 400;
@@ -30,20 +29,21 @@ body {
 }
 
 .animated-text {
-  display: none !important;
   position: relative;
+  top: -40%;
   background: transparent;
   margin: auto;
   width: 90%;
-  height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 555;
+  margin-top: 10px;
 }
 
 .mast__title {
-  font-size: 1em !important;
+  font-size: 1.3em !important;
   text-align: center;
   font-weight: bold;
   font-size: larger;
@@ -55,7 +55,6 @@ body {
 
 .btn-wrapper {
   width: 100%;
-  height: 30%;
   background: transparent;
   display: flex;
   justify-content: center;
@@ -64,26 +63,93 @@ body {
 
 .start-quiz-btn {
   height: 65px;
-  width: 300px;
+  width: 200px;
   font-weight: bolder;
   letter-spacing: 0.1em;
   text-decoration: none;
-  background-color: #5CB9FF;
-  color: #5CB9FF;
+  background-color: #82919c;
+  color: #ffffff;
   position: relative;
   cursor: pointer;
-  margin: 3px 3px;
+  margin: 23px 13px;
   display: flex;
   justify-content: center;
   align-items: center;
   align-self: center;
 }
 
-.start-quiz-btn :hover {
-  transform: scale(1.2);
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+.result {
+  width: 100%;
+  text-align: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+}
+
+.giveup-btn {
+  height: 65px;
+  transition: all 0.5s ease-in-out;
+  font-weight: bolder;
+  letter-spacing: 0.4em;
+  text-decoration: none;
+  background-color: #82919c;
+  color: white;
+  position: relative;
+  cursor: pointer;
+  margin: 23px 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.giveup-btn :hover {
+  transform: scale(1.1);
   background-color: var(--clr);
   box-shadow: 1px 2px 33px var(--clr);
   letter-spacing: 0.39em;
+  color: #5CB9FF;
+}
+
+.giveup-btn :before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: linear-gradient(#232526, #414345);
+  z-index: -1;
+}
+
+.giveup-btn span {
+  z-index: 3;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 30px;
+  font-size: 30px;
+  width: 300px;
+}
+
+.restart_quiz {
+  display: none;
+}
+
+.restart_btn_active {
+  display: 1;
+}
+
+.start-quiz-btn :hover {
+  transform: scale(1.1);
+  background-color: var(--clr);
+  box-shadow: 1px 2px 33px var(--clr);
+  letter-spacing: 0.39em;
+  color: #5CB9FF;
 }
 
 .start-quiz-btn :before {
@@ -116,6 +182,8 @@ body {
   width: 100%;
   height: 80%;
   color: #fff;
+  box-shadow: 5px 5px 30px black;
+  border: solid 2px black;
 }
 .mast:after {
   z-index: 0;
@@ -5006,19 +5074,35 @@ body {
   }
 }
 .main-Container {
-  display: 1 !important;
+  opacity: 0;
   background-color: transparent;
-  height: 80%;
   width: 90%;
-  border: solid 1px black;
+  border-radius: 2px 2px;
   margin: auto;
   align-self: center;
+  box-shadow: 5px 5px 30px black;
+  border: solid 2px black;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.active {
+  display: 1 !important;
+  opacity: 100;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: end;
+  align-items: center;
+}
+
+.inactive {
+  display: none;
+  opacity: 0;
 }
 
 .Qs-container {
-  height: 55%;
+  height: 100%;
   width: 100%;
   background-color: transparent;
   display: flex;
@@ -5027,45 +5111,71 @@ body {
   justify-content: space-between;
 }
 
-.timer-Container {
+.timer-Container, .qs-Amount {
   border: black 1px solid;
+  background-color: #302d2d;
+  box-shadow: 5px 5px 20px black;
   height: 100px;
   width: 20%;
   color: rgb(64, 201, 255);
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  font-size: 20px;
+  font-size: 35px;
+  letter-spacing: 0.1em;
 }
 
 .Q-container {
   height: 90%;
-  width: 80%;
+  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+  justify-content: space-between;
   font-size: 30px;
 }
 
 .Q-container p {
   font-size: 42px;
-  background: -webkit-linear-gradient(rgb(47, 135, 185), rgb(64, 201, 255));
+  background: -webkit-linear-gradient(rgb(47, 135, 185), rgb(66, 200, 253));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
 }
 
+.result_span {
+  display: inline-block;
+  border: 1px solid #5CB9FF;
+  color: white;
+  font-size: 45px;
+  text-align: center;
+  padding: 3px 8px;
+}
+
+.qs-Amount {
+  font-size: 35px;
+}
+
 .score-container {
-  border: black 1px solid;
-  height: 100px;
-  width: 20%;
-  color: rgb(64, 201, 255);
+  width: 200px;
+  font-size: 32px !important;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 5px;
   align-items: center;
-  font-size: 20px;
+  color: rgb(64, 201, 255);
+  text-align: center;
+  font-size: 35px;
+  padding: 5px;
+  border: black 1px solid;
+  background-color: #302d2d;
+  box-shadow: 5px 5px 20px black;
+}
+
+.score-display {
+  padding: 5px;
+  font-size: 45px;
 }
 
 .answers-container {
@@ -5080,17 +5190,45 @@ body {
   align-items: center;
 }
 
+.disabled {
+  pointer-events: none;
+}
+
 .option-btn {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-size: 20px;
+  padding-left: 30px;
+  font-size: 25px;
   color: rgb(64, 141, 172);
+  background-color: #302d2d;
+  box-shadow: 5px 5px 20px black;
 }
 
 .answers-container .option-btn {
-  background-color: rgb(46, 46, 46);
-  height: 18%;
+  height: 22%;
   width: 48%;
   cursor: pointer;
+}
+
+.option-btn:hover {
+  transition: all 0.5s ease-in-out;
+  background-color: rgb(241, 186, 34);
+  color: #111;
+}
+
+.correct {
+  background-color: #12ad2a;
+  color: #111;
+  font-size: larger;
+  font-weight: bold;
+  transform: scale(1.05, 1.03);
+}
+
+.wrong {
+  background-color: #ff0000;
+  color: #111;
+  font-size: larger;
+  font-weight: bold;
+  opacity: 50%;
 }/*# sourceMappingURL=style.css.map */
