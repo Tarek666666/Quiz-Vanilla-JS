@@ -5194,6 +5194,10 @@ body {
   pointer-events: none;
 }
 
+.disabled_btn {
+  opacity: 40%;
+}
+
 .option-btn {
   display: flex;
   justify-content: flex-start;

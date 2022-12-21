@@ -61,7 +61,8 @@ function getQs() {
         if (this.readyState === 4 && this.status === 200) {
             let qsObject = JSON.parse(this.responseText);
             let qsCount = qsObject.length;
-            nextQeuButton.classList.add("disabled");
+            nextQeuButton.classList.add("disabled"); 
+            nextQeuButton.classList.add("disabled_btn");
             timerP.innerText = 15;
             createQeustion(qsObject, qsCount);
             //calling the timer to start countdown from 15 to 0 every time when new question shows
@@ -128,6 +129,7 @@ function createQeustion(qsObj, qsCount) {
 // enable next question button after the user has selected
 
 function selectedOption(answer, currentCorrectAnswer) {
+    nextQeuButton.classList.remove("disabled_btn");
     if (answer.innerText == currentCorrectAnswer) {
         answer.classList.add("correct");
         answersContainer.classList.add("disabled");
@@ -158,6 +160,7 @@ function selectedOption(answer, currentCorrectAnswer) {
 
 // get the next question when user clicks on next que button
 nextQeuButton.addEventListener("click", () => {
+    nextQeuButton.classList.add("disabled_btn");
     timerP.innerText = 15;
     timerP.style.backgroundColor = "transparent";
     answersContainer.classList.remove("disabled");
@@ -197,7 +200,8 @@ function timer() {
 
         setTimeout(function () {
             nextQeuButton.classList.remove("disabled");
-        }, 3000);
+            nextQeuButton.classList.remove("disabled_btn");
+        }, 2000);
     }
 }
 
